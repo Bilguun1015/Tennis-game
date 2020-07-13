@@ -1,6 +1,7 @@
 <html>
     Hello
     <canvas id="gameCanvas" width="800" height="600"></canvas>
+
     <script>
         let canvas;
         let canvasContext;
@@ -10,23 +11,30 @@
             canvas = document.getElementById('gameCanvas');
             canvasContext = canvas.getContext('2d');
 
-            setInterval(drawEverything, 50);
-            // drawEverything()
+            let framesPerSecond = 30;
+            setInterval(callBoth, 1000/framesPerSecond);
         }
+
+        function callBoth() {
+            moveEverything();
+            drawEverything();
+        }
+
+        function moveEverything() {
+            ballX += 5;
+        }
+
         function drawEverything() {
             
-            if(ballX !== canvas.width){
-                ballX += 5;
-            } else {
-                ballX -= 5;
-            }
             canvasContext.fillStyle = 'black';
             canvasContext.fillRect(0,0,canvas.width, canvas.height);
-            canvasContext.fillStyle = 'red';
-                                //left,top,width,height
-            canvasContext.fillRect(100, 200, 50,  25 );
             canvasContext.fillStyle = 'white';
+                                //left,top,width,height
+            canvasContext.fillRect(0, 100, 10,  100 );
+            canvasContext.fillStyle = 'red';
             canvasContext.fillRect(ballX,220,10,10);
         }
+
     </script>
+
 </html>
